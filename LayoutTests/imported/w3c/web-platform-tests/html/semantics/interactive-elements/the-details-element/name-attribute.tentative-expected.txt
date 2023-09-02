@@ -1,0 +1,16 @@
+
+PASS basic handling of mutually exclusive details
+PASS more complex handling of mutually exclusive details
+PASS mutually exclusive details across multiple names and multiple tree scopes
+FAIL mutation event and toggle event order matches tree order assert_array_equals: removal events received in tree order, followed by addition event lengths differ, expected array ["e0", "e2", "e3", "e1"] length 4, got ["e0", "e3", "e1"] length 3
+PASS interaction of open attribute changes with mutation events
+PASS empty and missing name attributes do not create groups
+PASS exclusivity enforcement with attachment scenario connected
+PASS exclusivity enforcement with attachment scenario disconnected
+PASS exclusivity enforcement with attachment scenario shadow
+PASS exclusivity enforcement with attachment scenario shadow-in-disconnected
+PASS exclusivity enforcement with attachment scenario template-in-disconnected
+PASS exclusivity enforcement with attachment scenario connected-in-xhr-response
+PASS exclusivity enforcement with attachment scenario connected-in-implementation-create-document
+PASS exclusivity enforcement with attachment scenario connected-in-template
+

@@ -157,6 +157,15 @@ void HTMLDetailsElement::attributeChanged(const QualifiedName& name, const AtomS
             RefPtr root = shadowRoot();
             ASSERT(root);
             if (m_isOpen) {
+                if (auto& name = attributeWithoutSynchronization(nameAttr); !name.isEmpty()) {
+                    Vector<HTMLDetailsElement*> otherDetailsElementsInThisNameGroup;
+                    for (auto& detailsElement : descendantsOfType<HTMLDetailsElement>(rootNode())) {
+                        if (&detailsElement != this && detailsElement.attributeWithoutSynchronization(nameAttr) == name)
+                            otherDetailsElementsInThisNameGroup.append(&detailsElement);
+                    }
+                    for (HTMLDetailsElement* otherDetailsElement : otherDetailsElementsInThisNameGroup)
+                        otherDetailsElement->removeAttribute(openAttr);
+                }
                 root->appendChild(*m_defaultSlot);
                 queueDetailsToggleEventTask(DetailsState::Closed, DetailsState::Open);
             } else {
