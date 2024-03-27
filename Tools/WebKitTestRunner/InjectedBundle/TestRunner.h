@@ -159,6 +159,7 @@ public:
     // Text search testing.
     bool findString(JSStringRef, JSValueRef optionsArray);
     void findStringMatchesInPage(JSStringRef, JSValueRef optionsArray);
+    void findInPage(JSStringRef target, JSValueRef optionsArrayAsValue);
     void replaceFindMatchesAtIndices(JSValueRef matchIndices, JSStringRef replacementText, bool selectionOnly);
 
     // Local storage

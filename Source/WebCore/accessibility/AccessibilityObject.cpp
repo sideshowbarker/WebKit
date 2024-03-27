@@ -4635,6 +4635,8 @@ static bool objectMatchesSearchCriteriaWithResultLimit(RefPtr<AXCoreObject> obje
 {
     if (isAccessibilityObjectSearchMatch(object, criteria) && isAccessibilityTextSearchMatch(object, criteria)) {
         results.append(object);
+        if (RefPtr node = object->node(); node && criteria.searchKeys.contains(AccessibilitySearchKey::PlainText))
+            node->expandAllDetailsAncestors();
 
         // Enough results were found to stop searching.
         if (results.size() >= criteria.resultsLimit)
